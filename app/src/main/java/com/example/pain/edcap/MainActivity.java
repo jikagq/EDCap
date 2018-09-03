@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import static java.lang.Math.atan2;
+import static java.lang.Math.round;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        txt =
         calc = (Button)findViewById(R.id.calc);
 
         latdep = (EditText)findViewById(R.id.latdep);
@@ -36,13 +39,34 @@ public class MainActivity extends AppCompatActivity {
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("INFO","Dans ton cul");
-                Toast.makeText(MainActivity.this, "The BT device is OFF!", Toast.LENGTH_SHORT).show();
+                Log.d("INFO","Dans ton cul"+test);
+                Toast.makeText(MainActivity.this, "Dans ton cul", Toast.LENGTH_SHORT).show();
                 //mettre les actions de calculs ici
                 //vérifier si y a des valeurs nulles ou 0
 
+                double cap = 0;
+                double xdep = Double.parseDouble(latdep.getText().toString());
+                double ydep = Double.parseDouble(longdep.getText().toString());
+                double xarr = Double.parseDouble(latar.getText().toString());
+                double yarr = Double.parseDouble(longar.getText().toString());
 
+                //if(xdep == null || xdep == 0)
 
+                double deltax = xarr - xdep;
+                double deltay = yarr - ydep;
+
+                cap = (atan2(deltay,deltax)*(180/Math.PI));
+
+                if(cap <= 0){
+                   cap = 360 + cap;
+                }
+
+                long caparrondi = round(cap);
+
+                res.setText("Direction : " + caparrondi.toString());
+
+                latdep.setText("");
+                longdep.setText("");
 
             }
         });

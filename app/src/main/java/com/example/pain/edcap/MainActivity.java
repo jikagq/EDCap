@@ -17,14 +17,14 @@ public class MainActivity extends AppCompatActivity {
 
     EditText latdep, longdep, latar, longar;
 
-    TextView res;
+    TextView txt, res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txt =
+        txt = (TextView)findViewById(R.id.txt);
         calc = (Button)findViewById(R.id.calc);
 
         latdep = (EditText)findViewById(R.id.latdep);
@@ -34,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
         res = (TextView)findViewById(R.id.res) ;
 
+        txt.setText("Elle est ou la balayette ?");
         Log.d("INFO","Elle est ou la balayette ?");
 
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("INFO","Dans ton cul"+test);
+                Log.d("INFO","Dans ton cul");
                 Toast.makeText(MainActivity.this, "Dans ton cul", Toast.LENGTH_SHORT).show();
                 //mettre les actions de calculs ici
                 //vérifier si y a des valeurs nulles ou 0
@@ -61,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
                    cap = 360 + cap;
                 }
 
-                long caparrondi = round(cap);
+                Long caparrondi = round(cap);
 
-                res.setText("Direction : " + caparrondi.toString());
+                String chaine = "Volez en direction de : " + caparrondi.toString()+"°";
+
+                res.setText(chaine);
 
                 latdep.setText("");
                 longdep.setText("");

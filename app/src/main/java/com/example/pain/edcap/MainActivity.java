@@ -40,18 +40,38 @@ public class MainActivity extends AppCompatActivity {
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("INFO","Dans ton cul");
-                Toast.makeText(MainActivity.this, "Dans ton cul", Toast.LENGTH_SHORT).show();
+
                 //mettre les actions de calculs ici
                 //vérifier si y a des valeurs nulles ou 0
 
                 double cap = 0;
-                double xdep = Double.parseDouble(latdep.getText().toString());
-                double ydep = Double.parseDouble(longdep.getText().toString());
-                double xarr = Double.parseDouble(latar.getText().toString());
-                double yarr = Double.parseDouble(longar.getText().toString());
 
-                //if(xdep == null || xdep == 0)
+                String a = latdep.getText().toString();
+                String b = longdep.getText().toString();
+                String c = latar.getText().toString();
+                String d = longar.getText().toString();
+
+                if(a.isEmpty()){
+                    a = "0";
+                    Toast.makeText(MainActivity.this, "valeur nulle remplacée par 0", Toast.LENGTH_SHORT).show();
+                }
+                if(b.isEmpty()){
+                    b = "0";
+                    Toast.makeText(MainActivity.this, "valeur nulle remplacée par 0", Toast.LENGTH_SHORT).show();
+                }
+                if(c.isEmpty()){
+                    c = "0";
+                    Toast.makeText(MainActivity.this, "valeur nulle remplacée par 0", Toast.LENGTH_SHORT).show();
+                }
+                if(d.isEmpty()){
+                    d = "0";
+                    Toast.makeText(MainActivity.this, "valeur nulle remplacée par 0", Toast.LENGTH_SHORT).show();
+                }
+
+                double xdep = Double.parseDouble(a);
+                double ydep = Double.parseDouble(b);
+                double xarr = Double.parseDouble(c);
+                double yarr = Double.parseDouble(d);
 
                 double deltax = xarr - xdep;
                 double deltay = yarr - ydep;
@@ -70,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
                 latdep.setText("");
                 longdep.setText("");
+
+                Log.d("INFO","Dans ton cul");
+                Toast.makeText(MainActivity.this, "Dans ton cul" + caparrondi.toString()+"°", Toast.LENGTH_SHORT).show();
 
             }
         });
